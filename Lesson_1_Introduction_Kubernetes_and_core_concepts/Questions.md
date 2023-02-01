@@ -13,3 +13,11 @@
   c. Kubectl
   d. etcd
  A: c
+
+Which principal ETCD follow to implement qouram
+What is the usage of Kube API server
+which component is reposible to make connectivity between pods?
+The purpose of Controller Manager used for ?
+If we do not have Scheduler will kubernetes pod will scheduled to any worker node?
+How can we setup hybrid environment for kubernetes cluster -- Answer - Understanding Cloud Controller Manager
+which component is reposible for deploying containers on worker node.
