@@ -1,9 +1,5 @@
 # Installing and Configuring Kubectl for Linux
 
-### Digital Ocean Referral Code:
-
-https://m.do.co/c/74dcb0137794
-
 ###  Documentation Link for kubectl
 
 https://kubernetes.io/docs/tasks/tools/install-kubectl/   
