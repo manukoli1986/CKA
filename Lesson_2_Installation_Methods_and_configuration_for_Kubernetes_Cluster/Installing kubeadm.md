@@ -76,6 +76,11 @@ Follow the instructions displayed on the screen to configure your cluster.
 ### Step 5: Join Nodes to the Cluster
 To join nodes to the cluster, use the kubeadm join command. You can find the command in the output of the kubeadm init command.
 
+```bash
+kubeadm join MasterIP:6443 --token ueggvg.xxxxxxxxxxx \
+        --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 ### Step 6: Configure Kubernetes CLI
 To configure the Kubernetes CLI, run the following command:
 
