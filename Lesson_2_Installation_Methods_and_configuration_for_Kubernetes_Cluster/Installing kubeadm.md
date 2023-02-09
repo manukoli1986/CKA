@@ -17,9 +17,12 @@ Kubeadm is a tool that helps you to set up a production-grade Kubernetes cluster
 ### Step 1: Install Docker
 Kubeadm requires Docker to run containers. Install Docker by following the instructions in the Docker documentation for your Linux distribution.
 
-```bash
+```
 ssh ec2-user@ec2-ip-address-dns-name-here
-sudo yum update
+```
+
+```bash
+sudo yum update -y
 sudo yum search docker
 sudo yum install docker
 sudo yum install docker -y 
@@ -34,10 +37,14 @@ sudo systemctl status docker.service
 Add the Kubernetes repository to your system so that you can install the latest version of Kubeadm.
 
 ```bash
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
 EOF
 ```
 
@@ -49,16 +56,6 @@ Use the following command to install Kubeadm, Kubelet, and Kubectl:
 - kubectl: the command line utility to talk to your cluster.
 
 ```bash
-cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-enabled=1
-gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-exclude=kubelet kubeadm kubectl
-EOF
-
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
